@@ -1,17 +1,22 @@
 # apps/oss/Dockerfile
 FROM golang:1.22-alpine AS build
+
+# Build context is: neftac-storage-monorepo/apps/oss/
 WORKDIR /app
 
-# Copy go.mod
+# Copy go.mod (at apps/oss/go.mod)
 COPY go.mod ./
 
-# Generate go.sum + download deps (inside Docker)
+# Generate go.sum + download deps
 RUN go mod tidy && go mod download
 
-# Copy all source files
-COPY . .
+# Copy source files from apps/oss/
+COPY cmd ./cmd
+COPY internal ./internal
+COPY scripts ./scripts
+COPY config.yaml ./
 
-# Build
+# Build from correct path
 RUN go build -o /oss ./cmd/server/main.go
 
 # Runtime
