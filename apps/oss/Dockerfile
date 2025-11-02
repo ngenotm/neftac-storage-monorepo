@@ -2,16 +2,16 @@
 FROM golang:1.22-alpine AS build
 WORKDIR /app
 
-# Copy go.mod from the module root
+# Copy go.mod only
 COPY go.mod ./
 
-# Generate go.sum and download deps
+# Auto-generate go.sum + download deps
 RUN go mod tidy && go mod download
 
-# Copy ALL source files
+# Copy all source
 COPY . .
 
-# Build from the correct module root
+# Build
 RUN go build -o /oss ./cmd/server/main.go
 
 # Runtime
