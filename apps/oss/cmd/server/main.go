@@ -1,5 +1,4 @@
-mkdir -p apps/oss/cmd/server
-cat > apps/oss/cmd/server/main.go << 'EOF'
+// apps/oss/cmd/server/main.go
 package main
 
 import (
@@ -43,4 +42,3 @@ func main() {
 	log.Println("Neftac S3 LIVE at s3.airsoko.com")
 	log.Fatal(app.Listen(AppConfig.Server.Host + ":" + AppConfig.Server.Port))
 }
-EOF
