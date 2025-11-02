@@ -2,16 +2,16 @@
 FROM golang:1.22-alpine AS build
 WORKDIR /app
 
-# Copy go.mod from apps/oss/
-COPY apps/oss/go.mod ./
+# Copy go.mod (inside apps/oss/)
+COPY go.mod ./
 
-# Generate go.sum and download deps
+# Generate go.sum + download deps
 RUN go mod tidy && go mod download
 
-# Copy ALL source files from apps/oss/
-COPY apps/oss/. .
+# Copy all source files (inside apps/oss/)
+COPY . .
 
-# Build from correct path
+# Build
 RUN go build -o /oss ./cmd/server/main.go
 
 # Runtime
@@ -19,6 +19,6 @@ FROM alpine:latest
 RUN apk add --no-cache ca-certificates
 WORKDIR /app
 COPY --from=build /oss /app/oss
-COPY apps/oss/config.yaml /app/config.yaml
+COPY config.yaml /app/config.yaml
 EXPOSE 8080
 CMD ["/app/oss"]
