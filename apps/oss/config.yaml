@@ -1,0 +1,21 @@
+server:
+  host: 0.0.0.0
+  port: 8080
+
+database:
+  file: /data/neftac.db
+
+storage:
+  root: /data/buckets
+
+jwt:
+  secret: your-super-secret-jwt-key-2025-neftac-change-in-prod
+  expiry_hours: 24
+
+s3:
+  region: ke-east-1
+  access_key: NEFTAC_ACCESS
+  secret_key: NEFTAC_SECRET_CHANGE_THIS
+
+lifecycle:
+  expire_days: 90
