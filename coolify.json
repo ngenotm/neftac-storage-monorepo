@@ -5,7 +5,8 @@
       "name": "oss",
       "domain": "s3.airsoko.com",
       "port": 8080,
-      "path": "apps/oss"
+      "path": "apps/oss",
+      "preDeploy": "cd apps/oss && go mod tidy"
     },
     {
       "name": "dashboard",
