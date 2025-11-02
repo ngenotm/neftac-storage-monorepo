@@ -2,13 +2,13 @@
 FROM golang:1.22-alpine AS build
 WORKDIR /app
 
-# Copy go.mod only
+# Copy go.mod
 COPY go.mod ./
 
-# Auto-generate go.sum + download deps
+# Generate go.sum + download deps (inside Docker)
 RUN go mod tidy && go mod download
 
-# Copy all source
+# Copy all source files
 COPY . .
 
 # Build
