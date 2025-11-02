@@ -1,0 +1,2 @@
+cd apps/oss
+go mod tidy
