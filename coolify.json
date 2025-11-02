@@ -1,0 +1,19 @@
+{
+  "name": "Neftac Storage",
+  "services": [
+    {
+      "name": "oss",
+      "domain": "s3.airsoko.com",
+      "port": 8080,
+      "path": "apps/oss"
+    },
+    {
+      "name": "dashboard",
+      "domain": "dashboard.airsoko.com",
+      "port": 3000,
+      "path": "apps/dashboard"
+    }
+  ],
+  "https": true,
+  "autoDeploy": true
+}
