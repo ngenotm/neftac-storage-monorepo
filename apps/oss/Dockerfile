@@ -1,20 +1,12 @@
-# apps/oss/Dockerfile
 FROM golang:1.22-alpine AS build
 WORKDIR /app
 
-# Copy go.mod
 COPY go.mod ./
-
-# Generate go.sum + download deps
 RUN go mod tidy && go mod download
 
-# Copy source
 COPY . .
-
-# Build
 RUN go build -o /oss ./cmd/server/main.go
 
-# Runtime
 FROM alpine:latest
 RUN apk add --no-cache ca-certificates
 WORKDIR /app
